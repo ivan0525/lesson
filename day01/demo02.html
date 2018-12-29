@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <meta
+    http-equiv="X-UA-Compatible"
+    content="ie=edge"
+  >
+  <title>Document</title>
+</head>
+
+<body>
+  <input
+    id="inputStr"
+    type="text"
+    placeholder="请输入字符串"
+  >
+  <button id="btn">点击</button>
+  <p class="result"></p>
+  <script>
+    //要求：将任意字符串中所有出现的字符按照出现频率的高低进行排序后，生成另一个字符串。
+    //页面中放一文本框，用户输入任意内容，点击按钮，在下方显示出按以上要求处理后的新字符串。
+    var btn = document.getElementById('btn');
+    var result = document.getElementsByClassName('result')[0];
+    btn.addEventListener('click', function (ev) {
+      var countObj = {};
+      var resultArr = [];
+      var resultStr = '';
+      var inputStr = document.getElementById('inputStr').value;
+      for (character of inputStr) {
+        if (!countObj[character]) {
+          countObj[character] = 1;
+        } else {
+          countObj[character]++;
+        }
+      }
+      console.log(countObj);
+      // result.innerText = resultStr;
+    })
+
+  </script>
+</body>
+
+</html>
