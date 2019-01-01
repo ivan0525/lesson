@@ -23,33 +23,26 @@
   <input
     id="dateStr"
     type="text"
+    required
   >
   <button id="btn">点击</button>
+  <p class="resultStr"></p>
+
   <script>
     var btn = document.getElementById('btn');
+    var resultStr = document.getElementsByClassName('resultStr')[0];
     var midArr = [];
-    var year,
-      month,
-      day,
-      hour,
-      minute,
-      second;
+
     btn.addEventListener('click', function (ev) {
       var dateStr = document.getElementById('dateStr').value;
-      midArr = dateStr.split('-');
-      // year = midArr[0];
-      // month = midArr[1];
-      [year, month] = midArr
-      var anoMidArr = midArr[2].split(' ');
-      day = anoMidArr[0];
-      var timeArr = anoMidArr[1].split(':');
-      // hour = timeArr[0];
-      // minute = timeArr[1];
-      // second = timeArr[2];
-      [hour, minute, second] = timeArr
-
-      console.log(year, month, day, hour, minute, second)
+      resultStr.innerText = addDate(dateStr);
     })
+    function addDate(date) {
+      if (!date) return '请输入日期字符串，格式为：YYYY-mm-dd HH-mm-ss';
+      var millisecond = (((5 * 24 + 10) * 60 + 20) * 60 + 30) * 1000;
+      var result = new Date(Date.parse(new Date(date)) + millisecond);
+      return result.toLocaleDateString().replace(/\//g, '-') + ' ' + result.getHours() + ':' + result.getMinutes() + ':' + result.getSeconds();
+    }
   </script>
 </body>
 
