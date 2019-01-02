@@ -41,7 +41,20 @@
       if (!date) return '请输入日期字符串，格式为：YYYY-mm-dd HH-mm-ss';
       var millisecond = (((5 * 24 + 10) * 60 + 20) * 60 + 30) * 1000;
       var result = new Date(Date.parse(new Date(date)) + millisecond);
-      return result.toLocaleDateString().replace(/\//g, '-') + ' ' + result.getHours() + ':' + result.getMinutes() + ':' + result.getSeconds();
+      var year = result.getFullYear(),
+        month = result.getMonth() + 1,
+        day = result.getDay(),
+        hour = result.getHours(),
+        minute = result.getMinutes(),
+        second = result.getSeconds();
+      var newTime = year + '-'
+        + (month < 10 ? '0' + month : month) + '-'
+        + (day < 10 ? '0' + day : day) + ' '
+        + (hour < 10 ? '0' + hour : hour) + ':'
+        + (minute < 10 ? '0' + minute : minute) + ':'
+        + (second < 10 ? '0' + second : second)
+      return newTime;
+
     }
   </script>
 </body>
