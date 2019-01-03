@@ -37,12 +37,10 @@
       resultStr.innerText = addDate(dateStr);
     })
     function addDate(date) {
-      let dateReg = /^(\d{4})(-)(\d{2})(-)(\d{2})(\s)(\d{2})(:)(\d{2})(:)(\d{2})$/g;
-      // if (!date) return '请输入日期字符串，格式为：YYYY-mm-dd HH:mm:ss';
-      var isMatch = date.match(dateReg) === null ? false : true;
-      if (isMatch) {
+      let dateReg = /^(\d{4})-(\d{2})-(\d{2})(\s)(\d{2}):(\d{2}):(\d{2})$/g;
+      if (date.match(dateReg)) {
         var millisecond = (((5 * 24 + 10) * 60 + 20) * 60 + 30) * 1000;
-        var result = new Date(Date.parse(new Date(date)) + millisecond);
+        var result = new Date((new Date(date)).getTime() + millisecond);
         var year = result.getFullYear(),
           month = result.getMonth() + 1,
           day = result.getDate(),
@@ -50,11 +48,11 @@
           minute = result.getMinutes(),
           second = result.getSeconds();
         var newTime = year + '-'
-          + (month < 10 ? '0' + month : month) + '-'
-          + (day < 10 ? '0' + day : day) + ' '
-          + (hour < 10 ? '0' + hour : hour) + ':'
-          + (minute < 10 ? '0' + minute : minute) + ':'
-          + (second < 10 ? '0' + second : second)
+          + month.toString().padStart(2, '0') + '-'
+          + day.toString().padStart(2, '0') + ' '
+          + hour.toString().padStart(2, '0') + ':'
+          + minute.toString().padStart(2, '0') + ':'
+          + second.toString().padStart(2, '0')
         return newTime;
       } else {
         return '请输入日期字符串，格式为：YYYY-mm-dd HH:mm:ss'
