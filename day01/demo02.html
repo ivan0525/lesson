@@ -28,6 +28,7 @@
     var btn = document.getElementById('btn');
     var result = document.getElementsByClassName('result')[0];
     btn.addEventListener('click', function (ev) {
+      var orderArr = [];
       var countObj = {};
       var resultArr = [];
       var resultStr = '';
@@ -35,12 +36,20 @@
       for (character of inputStr) {
         if (!countObj[character]) {
           countObj[character] = 1;
+          // 顺序索引
+          orderArr.push(character);
         } else {
           countObj[character]++;
         }
       }
-      console.log(countObj);
-      // result.innerText = resultStr;
+
+      resultArr = orderArr.sort(function (a, b) {
+        return countObj[b] - countObj[a]
+      });
+
+      console.log(resultArr)
+      resultStr = '结果为：' + resultArr.join('');
+      result.innerText = resultStr;
     })
 
   </script>
