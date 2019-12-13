@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" class="input-area" />
+    <button class="btn">确认</button>
+    <script>
+      const input = document.getElementsByClassName('input-area')[0]
+      const btn = document.getElementsByClassName('btn')[0]
+      btn.addEventListener('click', () => {
+        const val = input.value
+        counter(val)
+      })
+
+      function counter(str) {
+        const arr = str.split('')
+        let map = new Map()
+        const result = arr.reduce((pre, cur) => {
+          return pre.has(cur) ? pre.set(cur, pre.get(cur) + 1) : pre.set(cur, 1)
+        }, map)
+        console.log(result)
+      }
+    </script>
+  </body>
+</html>
