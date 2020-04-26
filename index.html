@@ -8,18 +8,60 @@
   </head>
   <body>
     <script>
-      let buildingSelected = [
-        { buildingList: [1, 2, 3] },
-        { buildingList: [4] }
-      ]
-      // let arr = []
-      // buildingSelected.forEach((item) => {
-      //   arr = arr.concat(item.buildingList)
-      // })
-      let arr = buildingSelected.reduce((pre, cur) => {
-        return pre.concat(cur.buildingList)
-      }, [])
-      console.log(arr)
+      // let buildingSelected = [
+      //   { buildingList: [1, 2, 3] },
+      //   { buildingList: [4] }
+      // ]
+      // // let arr = []
+      // // buildingSelected.forEach((item) => {
+      // //   arr = arr.concat(item.buildingList)
+      // // })
+      // let arr = buildingSelected.reduce((pre, cur) => {
+      //   return pre.concat(cur.buildingList)
+      // }, [])
+      // console.log(arr)
+      var findMedianSortedArrays = function(nums1, nums2) {
+        function mergeSort(arr) {
+          const len = arr.length
+          if (len < 2) {
+            return arr
+          }
+          const middle = Math.floor(len / 2)
+          let left = arr.slice(0, middle)
+          let right = arr.slice(middle)
+          return merge(mergeSort(left), mergeSort(right))
+        }
+
+        function merge(left, right) {
+          let result = []
+          while (left.length && right.length) {
+            if (left[0] < right[0]) {
+              result.push(left.shift())
+            } else {
+              result.push(right.shift())
+            }
+          }
+          while (left.length) {
+            result.push(left.shift())
+          }
+          while (right.length) {
+            result.push(right.shift())
+          }
+          return result
+        }
+        const sort = mergeSort([...nums1, ...nums2])
+        console.log(sort)
+
+        if (sort.length % 2) {
+          return sort[Math.floor(sort.length / 2)]
+        } else {
+          return (
+            (sort[Math.floor(sort.length / 2)] +
+              sort[Math.floor(sort.length / 2) - 1]) /
+            2
+          )
+        }
+      }
     </script>
   </body>
 </html>

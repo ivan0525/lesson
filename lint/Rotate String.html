@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // for offset = 0, return "abcdefg"
+      // for offset = 1, return "gabcdef"
+
+      // for offset = 2, return "fgabcde"
+
+      // for offset = 3, return "efgabcd"
+
+      function rotateString(arr, offset) {
+        if (!offset) {
+          return arr
+        }
+        const len = arr.length
+        // offset超过字符串数组长度，求余
+        offset = offset % len
+        reverse(arr, 0, len - offset - 1)
+        reverse(arr, len - offset, len - 1)
+        reverse(arr, 0, len - 1)
+
+        function reverse(arr, start, end) {
+          while (start < end) {
+            const temp = arr[start]
+            arr[start] = arr[end]
+            arr[end] = temp
+            start++
+            end--
+          }
+        }
+        return arr
+      }
+    </script>
+  </body>
+</html>

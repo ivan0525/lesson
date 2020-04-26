@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.time('fab')
+      function fab(n) {
+        function run(a, b, n) {
+          if (n === 0) {
+            return a
+          } else {
+            return run(b, a + b, n - 1)
+          }
+        }
+        return run(1, 1, n)
+      }
+      fab(5000)
+      console.timeEnd('fab')
+    </script>
+  </body>
+</html>
